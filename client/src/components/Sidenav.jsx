@@ -4,9 +4,11 @@ import { FaUserTie } from 'react-icons/fa'
 import { AiFillFileAdd } from 'react-icons/ai'
 import { TfiViewListAlt } from 'react-icons/tfi'
 import { Context } from "../context/todoContext/Context";
+import { useDispatch } from 'react-redux';
 
 export default function Sidenav() {
-    const { dispatch } = useContext(Context);
+    const dispatch = useDispatch();
+    // const { dispatch } = useContext(Context);
     const handleAdd = () => {
         dispatch({ type: "ADD", payload: 'add' })
     }

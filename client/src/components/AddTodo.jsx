@@ -1,14 +1,14 @@
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Axios from "axios";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import * as yup from "yup";
+import { addTodo } from "../redux/apiCall.js";
 import './addtodo.css';
-import { apiDomain } from "../utils/utils";
-import { useContext } from "react";
-import { Context } from "../context/userContext/Context";
 
 export default function AddTodo() {
-    const { user } = useContext(Context)
+    const user = useSelector((state) => state.user.user);
+    const dispatch = useDispatch();
+    // const { user } = useContext(Context)
     const schema = yup.object().shape({
         description: yup.string().required("description is required"),
     });
@@ -17,15 +17,7 @@ export default function AddTodo() {
         resolver: yupResolver(schema),
     });
     const onSubmit = (data) => {
-        Axios.post(`${apiDomain}/todos`, data,
-            { headers: { "Authorization": `${user.token}` } })
-            .then((response) => {
-                response.data.message && alert(response.data.message)
-                reset();
-            })
-            .catch(({ response }) => {
-                alert(response.data.error)
-            });
+        addTodo(dispatch, data)
     };
     return (
         <div className="formWrapper">

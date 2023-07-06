@@ -1,10 +1,11 @@
-import './profile.css'
-import userAvator from '../assets/userAvator.webp'
-import { useContext } from 'react'
-import { Context } from '../context/userContext/Context'
-export default function Profile() {
+import { useSelector } from 'react-redux';
+import userAvator from '../assets/userAvator.webp';
+import { selectUser } from '../redux/userSlice';
+import './profile.css';
 
-    const { user } = useContext(Context);
+export default function Profile() {
+    const user = useSelector(selectUser);
+
     return (
         <div className='profile'>
             <div className="userAvator">
@@ -19,5 +20,5 @@ export default function Profile() {
                 <p>{user.id}</p>
             </div>
         </div>
-    )
+    );
 }

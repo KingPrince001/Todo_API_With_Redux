@@ -8,12 +8,8 @@ import store from "./redux/store"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ContextProvider>
-      <UIContextProvider >
         <Provider store={store}>
           <App />
         </Provider>
-      </UIContextProvider>
-    </ContextProvider>
   </React.StrictMode>,
 )

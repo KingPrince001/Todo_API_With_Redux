@@ -7,9 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Axios from "axios";
 import { Context } from "../context/userContext/Context";
 import { apiDomain } from "../utils/utils";
+import { useDispatch } from 'react-redux';
 
 export default function LoginForm() {
-    const { dispatch } = useContext(Context);
+    const  dispatch  = useDispatch();
 
     const navigate = useNavigate();
     const schema = yup.object().shape({
